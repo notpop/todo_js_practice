@@ -20,9 +20,20 @@ const createBackButton = () => {
   });
 
   return back_button;
-}
+};
 
-const createDeleteButton = () => {
+const createIncompleteDeleteButton = () => {
+  const delete_button = document.createElement("button");
+  delete_button.innerText = "削除";
+  delete_button.addEventListener("click", () => {
+    const delete_target = delete_button.parentNode;
+    deleteFromIncompleteList(delete_target);
+  });
+
+  return delete_button;
+};
+
+const createCompleteDeleteButton = () => {
   const delete_button = document.createElement("button");
   delete_button.innerText = "削除";
   delete_button.addEventListener("click", () => {
@@ -31,7 +42,7 @@ const createDeleteButton = () => {
   });
 
   return delete_button;
-}
+};
 
 const createCompleteButton = () => {
   const complete_button = document.createElement("button");
@@ -48,7 +59,7 @@ const createCompleteButton = () => {
     li.innerText = complete_target_text;
 
     const back_button = createBackButton();
-    const delete_button = createDeleteButton();
+    const delete_button = createCompleteDeleteButton();
 
     complete_target.appendChild(li);
     complete_target.appendChild(back_button);
@@ -57,7 +68,7 @@ const createCompleteButton = () => {
   });
 
   return complete_button;
-}
+};
 
 const createIncompleteList = (target_text) => {
   const div = document.createElement("div");
@@ -65,7 +76,7 @@ const createIncompleteList = (target_text) => {
   const li = document.createElement("li");
   li.innerText = target_text;
   const complete_button = createCompleteButton();
-  const delete_button = createDeleteButton();
+  const delete_button = createIncompleteDeleteButton();
 
   div.appendChild(li);
   div.appendChild(complete_button);
